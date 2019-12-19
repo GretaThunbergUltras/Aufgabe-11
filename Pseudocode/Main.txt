@@ -1,0 +1,13 @@
+Motoren/Sensoren/Kamera initialisieren
+MQTT-Verbindung initialisieren
+Programm-Duchgang:
+	Falls Kommando bereits erhalten
+		Bild erzeugen
+		Zähler i auf 0 setzen
+		Solange wie i kleiner 3
+			Bild erzeugen
+			2s geradeaus fahren
+			i inkrementieren
+	Sonst
+		500ms Warten
+	Springe zu "Programm-Duchgang"

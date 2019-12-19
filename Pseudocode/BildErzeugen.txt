@@ -1,0 +1,6 @@
+Eventuell anhalten
+Kamera ansprechen, Befehl zum Erstellen eines Bildes senden
+Bilddaten empfangen, umwandeln in (JPEG/PNG)
+Bild abspeichern (Senden über LAN, Speichern als Datei)
+Falls angehalten
+    Weiterfahren
