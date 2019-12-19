@@ -1,4 +1,4 @@
-from lib.Motor import *
+from Motor import *
 from time import sleep
 
 
