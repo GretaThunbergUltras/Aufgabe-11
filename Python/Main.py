@@ -14,4 +14,5 @@ for i in range(0, 3):
     setMotorPower(50)
     sleep(2.0)
     setMotorPower(0)
+    sleep(0.5)
     captureImage()
