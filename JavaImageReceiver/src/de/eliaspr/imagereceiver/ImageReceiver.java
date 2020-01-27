@@ -1,11 +1,8 @@
 package de.eliaspr.imagereceiver;
 
-import de.eliaspr.toolboxx.SerializationUtils;
-
 import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
-import java.net.SocketException;
 
 public class ImageReceiver {
 
@@ -20,5 +17,5 @@ public class ImageReceiver {
             System.out.println(imageSizeBytes);
         }
     }
-
+// 48645321
 }
