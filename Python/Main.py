@@ -1,7 +1,7 @@
 from picamera import PiCamera
 import brickpi3
 from time import sleep
-from datetime import datetime.
+from datetime import datetime
 
 camera = PiCamera()
 camera.resolution = (1920, 1080)
