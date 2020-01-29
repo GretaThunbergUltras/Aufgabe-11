@@ -2,12 +2,14 @@ from picamera import PiCamera
 import brickpi3
 from time import sleep
 from datetime import datetime
+import os
 
 camera = PiCamera()
 camera.resolution = (1920, 1080)
 camera.start_preview()
 
 bp = brickpi3.BrickPi3()
+os.mkdir("../Images/")
 
 def captureImage():
     camera.capture("../Images/image_{}.jpg".format(datetime.now().strftime("%H-%M-%S")))
