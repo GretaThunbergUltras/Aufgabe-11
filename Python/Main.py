@@ -8,10 +8,11 @@ print("Initializing BotLib")
 bot = Bot()
 
 print("Calibrating steering motor")
-bot._steer_motor.calibrate()
+bot.calibrate()
 
 print("Making images directory")
-os.mkdir("../Images/")
+if not os.path.isdir("../Images/"):
+    os.mkdir("../Images/")
 
 def captureImage():
     imageDate = datetime.now().strftime("%H-%M-%S")
@@ -31,3 +32,6 @@ for i in range(3):
     bp.set_motor_power(bp.PORT_B, 0)
     sleep(0.5)
     captureImage()
+
+print("Stopping Bot")
+bot.stop_all()
