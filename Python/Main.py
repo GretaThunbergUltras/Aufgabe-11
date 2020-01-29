@@ -1,21 +1,31 @@
-from picamera import PiCamera
-import brickpi3
+from botlib.bot import Bot
+from brickpi3 import BrickPi3
 from time import sleep
 from datetime import datetime
 import os
 
-camera = PiCamera()
-camera.resolution = (1920, 1080)
-camera.start_preview()
+print("Initializing BotLib")
+bot = Bot()
 
-bp = brickpi3.BrickPi3()
+print("Calibrating steering motor")
+bot._steer_motor.calibrate()
+
+print("Making images directory")
 os.mkdir("../Images/")
 
 def captureImage():
-    camera.capture("../Images/image_{}.jpg".format(datetime.now().strftime("%H-%M-%S")))
+    imageDate = datetime.now().strftime("%H-%M-%S")
+    print("Capturing image \"image_{}.jpg\"".format(imageDate))
+    bot._camera._cam.capture("../Images/image_{}.jpg".format(imageDate))
     
+# Capture first image
 captureImage()
-for i in range(0, 3):
+
+# Capture three images after driving 2 seconds each time
+bp = BrickPi3()
+for i in range(3):
+    print("Iteration {}/3".format(i + 1))
+
     bp.set_motor_power(bp.PORT_B, 50)
     sleep(2.0)
     bp.set_motor_power(bp.PORT_B, 0)
