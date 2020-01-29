@@ -1,0 +1,3 @@
+[submodule "Botlib"]
+	path = Botlib
+	url = https://github.com/GretaThunbergUltras/botlib
