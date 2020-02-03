@@ -14,8 +14,10 @@ def on_connect(client, userdata, flags, rc):
 
 def on_message(client, userdata, msg):
     payload = str(msg.payload)
+    print("MQTT > topic\"{}\" payload=\"{}\"".format(msg.topic, payload))
     if "execMakePhoto" in payload:
         print("MQTT > Received start command")
+        executeMain()
 
 def executeMain():
     captureImage()
@@ -42,7 +44,7 @@ try:
     print("Initializing BotLib")
     bot = Bot()
 
-    print("Calibrating steering motor")
+    print("Calibrating motors")
     bot.calibrate()
 
     print("Making images directory")
