@@ -42,23 +42,19 @@ def captureImage():
     # TODO send image back via MQTT
     # TODO delete image and temp file
 
-try:
-    print("Initializing BotLib")
-    bot = Bot()
+print("Initializing BotLib")
+bot = Bot()
 
-    print("Calibrating motors")
-    bot.calibrate()
+print("Calibrating motors")
+bot.calibrate()
 
-    print("Making images directory")
-    if not os.path.isdir("../Images/"):
-        os.mkdir("../Images/")
+print("Making images directory")
+if not os.path.isdir("../Images/"):
+    os.mkdir("../Images/")
 
-    print("MQTT > Starting client")
-    client = mqtt.Client()
-    client.on_connect = on_connect
-    client.on_message = on_message
-    client.connect(MQTT_SERVER, 1883, 60)
-    client.loop_forever()
-except KeyboardInterrupt:
-    print("Stopping bot")
-    bot.stop_all()
+print("MQTT > Starting client")
+client = mqtt.Client()
+client.on_connect = on_connect
+client.on_message = on_message
+client.connect(MQTT_SERVER, 1883, 60)
+client.loop_forever()
