@@ -13,6 +13,7 @@ def on_connect(client, userdata, flags, rc):
     client.subsribe(MQTT_PATH)
 
 def on_message(client, userdata, msg):
+    print("received a message")
     payload = str(msg.payload)
     print("MQTT > topic\"{}\" payload=\"{}\"".format(msg.topic, payload))
     if "execMakePhoto" in payload:

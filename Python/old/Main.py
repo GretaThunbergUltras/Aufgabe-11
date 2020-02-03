@@ -17,7 +17,7 @@ if not os.path.isdir("../Images/"):
 def captureImage():
     imageDate = datetime.now().strftime("%H-%M-%S")
     print("Capturing image \"image_{}.jpg\"".format(imageDate))
-    bot._camera._cam.capture("../Images/image_{}.jpg".format(imageDate))
+    bot._camera._cam.capture("../../Images/image_{}.jpg".format(imageDate))
     
 # Capture first image
 captureImage()
