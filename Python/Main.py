@@ -27,7 +27,7 @@ bp = BrickPi3()
 for i in range(3):
     print("Iteration {}/3".format(i + 1))
 
-    bp.set_motor_power(bp.PORT_B, 50)
+    bp.set_motor_power(bp.PORT_B, 40)
     sleep(2.0)
     bp.set_motor_power(bp.PORT_B, 0)
     sleep(0.5)
