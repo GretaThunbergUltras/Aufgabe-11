@@ -6,7 +6,7 @@ from datetime import datetime
 import os
 
 MQTT_SERVER = "localhost"
-MQTT_PATH = "imageCapturing"
+MQTT_PATH = "img_capture"
 
 def on_connect(client, userdata, flags, rc):
     print("MQTT > Connected with result code {}".format(rc))
