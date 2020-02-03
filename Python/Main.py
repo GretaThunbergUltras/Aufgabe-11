@@ -5,6 +5,7 @@ from time import sleep
 from datetime import datetime
 import os
 
+# mosquitto_pub -h 192.168.178.51 -t img_capture -m execMakePhoto
 MQTT_SERVER = "localhost"
 MQTT_PATH = "img_capture"
 
