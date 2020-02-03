@@ -13,9 +13,7 @@ def on_message(client, userdata, msg):
     print(msg.topic+" "+str(payload))
     print("execMakePhoto" in payload)
     if "execMakePhoto" in payload:
-        print("In Loop")
-        import Main.py
-        print("Success")
+        import Execute.py
     
 
 try:
