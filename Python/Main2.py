@@ -12,12 +12,21 @@ def on_connect(client, userdata, flags, rc):
     print("MQTT > Connected with result code {}".format(rc))
     client.subsribe(MQTT_PATH)
 
+# def on_message(client, userdata, msg):
+#     payload = str(msg.payload)
+#     print("MQTT > topic\"{}\" payload=\"{}\"".format(msg.topic, payload))
+#     if "execMakePhoto" in payload:
+#         print("MQTT > Received start command")
+#         executeMain()
+
 def on_message(client, userdata, msg):
     payload = str(msg.payload)
-    print("MQTT > topic\"{}\" payload=\"{}\"".format(msg.topic, payload))
+    print(msg.topic+" "+str(payload))
+    print("execMakePhoto" in payload)
     if "execMakePhoto" in payload:
-        print("MQTT > Received start command")
-        executeMain()
+        print("In Loop")
+        import Main.py
+        print("Success")
 
 def executeMain():
     captureImage()
