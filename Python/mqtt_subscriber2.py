@@ -18,10 +18,13 @@ def on_message(client, userdata, msg):
         print("Success")
     
 
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
+try:
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
 
-client.connect(MQTT_SERVER, 1883, 60)
+    client.connect(MQTT_SERVER, 1883, 60)
 
-client.loop_forever()
+    client.loop_forever()
+except KeyboardInterrupt:
+    print("STOP!!!")
