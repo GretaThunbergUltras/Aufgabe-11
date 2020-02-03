@@ -34,8 +34,10 @@ def executeMain():
 
 def captureImage():
     imageDate = datetime.now().strftime("%H-%M-%S")
-    print("Capturing image \"image_{}.jpg\"".format(imageDate))
-    bot._camera._cam.capture("../Images/image_{}.jpg".format(imageDate))
+    fileName = "image_{}.jpg".format(imageDate)
+    print("Capturing image \"{}\"".format(fileName))
+    filePath = "../Images/{}".format(fileName)
+    bot._camera._cam.capture(filePath)
     # TODO convert image to base64
     # TODO send image back via MQTT
     # TODO delete image and temp file
