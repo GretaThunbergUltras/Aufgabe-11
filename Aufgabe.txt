@@ -1,4 +1,0 @@
-Steuerung über MQTT
-
-Ein Schwarmroboter ist ein MQTT-Natzwerk eingebunden. Ein dedizierter Raspberry Pi sendet ein Kommando an den Schwarmroboter.
-Der Schwarmroboter fährt sechs ekunden geradeaus und erstellt alle 2 Sekunden ein Bild.
