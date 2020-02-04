@@ -1,5 +1,7 @@
 import paho.mqtt.client as mqtt
 from botlib.bot import Bot
+from botlib.broker import Broker
+from io import BytesIO
 from brickpi3 import BrickPi3
 from time import sleep
 from datetime import datetime
@@ -25,13 +27,16 @@ def captureImage():
     # filePath = "../Images/{}".format(fileName)
     # bot.camera()._cam.capture(filePath)
 
-    print("Capturing image")
-    buff = BytesIO()
-    bot.camera()._cam.capture(buff, format='jpeg')
+    try:
+        print("Capturing image")
+        buff = BytesIO()
+        bot.camera()._cam.capture(buff, format='jpeg')
 
-    print("Sending images")
-    buff.seek(0)
-    broker.send_file('test_channel', buff.read())
+        print("Sending images")
+        buff.seek(0)
+        broker.send_file('test_channel', buff.read())
+    except Exception as ex:
+        print(ex)
 
 print("Initializing BotLib")
 bot = Bot()
