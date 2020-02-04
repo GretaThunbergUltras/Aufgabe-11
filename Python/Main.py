@@ -25,7 +25,7 @@ def captureImage():
     fileName = "image_{}.jpg".format(imageDate)
     print("Capturing image \"{}\"".format(fileName))
     filePath = "../Images/{}".format(fileName)
-    bot._camera._cam.capture(filePath)
+    bot.camera()._cam.capture(filePath)
     
     # TODO convert image to base64
     # TODO send image back via MQTT
