@@ -6,12 +6,10 @@ from datetime import datetime
 import os
 
 # mosquitto_pub -h 192.168.178.51 -t img_capture -m execMakePhoto
-MQTT_SERVER = "localhost"
-MQTT_PATH = "img_capture"
 
 def on_connect(client, userdata, flags, rc):
     print("MQTT > Connected with result code " + str(rc))
-    client.subscribe(MQTT_PATH)
+    client.subscribe('img_capture')
 
 def on_message(client, userdata, msg):
     payload = str(msg.payload)
@@ -21,15 +19,23 @@ def on_message(client, userdata, msg):
         executeImageCapture()
 
 def captureImage():
-    imageDate = datetime.now().strftime("%H-%M-%S")
-    fileName = "image_{}.jpg".format(imageDate)
-    print("Capturing image \"{}\"".format(fileName))
-    filePath = "../Images/{}".format(fileName)
-    bot.camera()._cam.capture(filePath)
-    
-    # TODO convert image to base64
-    # TODO send image back via MQTT
-    # TODO delete image and temp file
+    # imageDate = datetime.now().strftime("%H-%M-%S")
+    # fileName = "image_{}.jpg".format(imageDate)
+    # print("Capturing image \"{}\"".format(fileName))
+    # filePath = "../Images/{}".format(fileName)
+    # bot.camera()._cam.capture(filePath)
+
+    print("Capturing image")
+    buff = BytesIO()
+    bot.camera()._cam.capture(buff, format='jpeg')
+
+    print("Sending images")
+    buff.seek(0)
+    broker.send_file('test_channel', buff.read())
+
+print("Initializing BotLib")
+bot = Bot()
+broker = Broker('gustav', 'gruppe11')
 
 def executeImageCapture():
     captureImage()
@@ -44,9 +50,6 @@ def executeImageCapture():
         sleep(0.5)
         captureImage()
 
-print("Initializing BotLib")
-bot = Bot()
-
 try:
     print("Calibrating motors")
     bot.calibrate()
@@ -59,8 +62,9 @@ try:
     client = mqtt.Client()
     client.on_connect = on_connect
     client.on_message = on_message
-    client.connect(MQTT_SERVER, 1883, 60)
+    client.connect('gruppe11', 1883, 60)
     client.loop_forever()
 except:
     print("Stopping Bot")
+    bot.camera()._cam.stop_preview()
     bot.stop_all()
